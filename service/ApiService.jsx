@@ -22,6 +22,7 @@ class ApiService {
         } catch (error) {
             // Ajouter le traitement à effectuer pour le traitement des erreurs
             console.error('Erreur lors du GET: ', error);
+            window.location.href = "/logout";
             throw error;
         }
     }
@@ -33,6 +34,7 @@ class ApiService {
         } catch (error) {
             // Ajouter le traitement à effectuer pour le traitement des erreurs
             console.error('Erreur lors du GET: ', error);
+            window.location.href = "/logout";
             throw error;
         }
     }
@@ -44,6 +46,7 @@ class ApiService {
             return response.data;
         } catch (error){
             console.error('Erreur lors du POST !: ' ,error)
+            window.location.href = "/logout";
             throw error;
         }
     }
@@ -59,6 +62,7 @@ class ApiService {
             return response.data;
         } catch (error){
             console.error('Erreur lors du POST !: ' ,error)
+            window.location.href = "/logout";
             throw error;
         }
     }
@@ -70,6 +74,7 @@ class ApiService {
             return response.data;
         } catch (error){
             console.error('Erreur lors du PUT !: ' ,error)
+            window.location.href = "/logout";
             throw error;
         }
     }
@@ -81,7 +86,9 @@ class ApiService {
             return response.data;
         } catch (error){
             console.error('Erreur lors du DELETE !: ' ,error)
+            window.location.href = "/logout";
             throw error;
+            
         }
     }
 }

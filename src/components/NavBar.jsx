@@ -22,9 +22,9 @@ function NavBar() {
             <ul className="menu menu-horizontal px-1">
               <li>
                 {/* <a href="/apiwithservice">ApiWithService</a>
-                <a href="/apicatalogue">Api Catalogue</a>
                 <a href="/api-instrumentale">Api Instrumentale</a>
-                <a href="/api-test">Api Test</a> */}
+              <a href="/api-test">Api Test</a> 
+              <a href="/apicatalogue">Catalogue</a>*/}
                 
                 { !isLoginIn && <a href="/login">Se Connecter</a> }
                 { !isLoginIn && <a href="/inscription">Inscription</a> }
