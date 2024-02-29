@@ -1,4 +1,16 @@
+import { useEffect, useState } from "react";
+
 function NavBar() {
+
+  const [isLoginIn, setIsLoginIn] = useState(false);
+
+
+  useEffect(()=>{
+    if(localStorage.getItem('authToken')){
+      setIsLoginIn(true);
+    }
+    console.log(isLoginIn);
+  })
 
     return (
       <>
@@ -9,12 +21,19 @@ function NavBar() {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <a href="/apiwithservice">ApiWithService</a>
+                {/* <a href="/apiwithservice">ApiWithService</a>
                 <a href="/apicatalogue">Api Catalogue</a>
                 <a href="/api-instrumentale">Api Instrumentale</a>
-                <a href="/api-test">Api Test</a>
-                <a href="/login">Se Connecter</a>
-                <a href="/instrumentales">Mes Intrumentales</a>
+                <a href="/api-test">Api Test</a> */}
+                
+                { !isLoginIn && <a href="/login">Se Connecter</a> }
+                { !isLoginIn && <a href="/inscription">Inscription</a> }
+                { isLoginIn && <a href="/instrumentales">Mes Intrumentales</a> }
+                { isLoginIn && <a href="/modifier-profile">Modifier Votre Profile</a> }
+                { isLoginIn && <a href="/logout">Se Déconnecter</a> }
+                
+                
+                
               </li>
             </ul>
           </div>

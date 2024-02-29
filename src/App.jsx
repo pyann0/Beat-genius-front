@@ -8,6 +8,8 @@ import ApiTest from './components/ApiTest'
 import { Authentification } from './view/Authentification'
 import { Logout } from './components/Logout'
 import { ApiUserInstrumentale } from './components/ApiUserInstrumentale'
+import { ModifierProfile } from './components/ModifierProfile'
+import { Inscription } from './components/Inscription'
 function App(){
   return (
     <div className='m-5'>
@@ -22,6 +24,8 @@ function App(){
           <Route path="/login" element={<Authentification/>} />
           <Route path="/logout" element={<Logout/>} />
           <Route path="/instrumentales" element={<ApiUserInstrumentale/>} />
+          <Route path="/modifier-profile" element={<ModifierProfile/>} />
+          <Route path="/inscription" element={<Inscription/>} />
         </Routes>
       </Router>
     </div>

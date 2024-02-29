@@ -26,6 +26,17 @@ class ApiService {
         }
     }
 
+    async getWithoutHeader(endpoint = '') {
+        try {
+            const response = await this.api.get(endpoint);
+            return response.data
+        } catch (error) {
+            // Ajouter le traitement à effectuer pour le traitement des erreurs
+            console.error('Erreur lors du GET: ', error);
+            throw error;
+        }
+    }
+
     // Méthode POST
     async post(endpoint = '', objectToSave) {
         try{

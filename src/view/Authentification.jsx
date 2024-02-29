@@ -30,12 +30,19 @@ export const Authentification = () => {
             .then( (data) => {
               console.log(data)
               localStorage.setItem('id', data.id)
-              localStorage.setItem('authToken', data.token)})
+              localStorage.setItem('authToken', data.token)
+              window.location.href = "/";
+            })
+              
+              
             .catch((error) => {
+              setLoginError("Connection réussie")
             console.log("Une erreur est survenue")
             console.error(error.message)})
             .finally(()=> console.log("Post terminé"))
 
+            
+            
             // A la place de 'notreToken', sauvegarder le Token reçu en réponse a notre requete POST
             
 
@@ -43,13 +50,14 @@ export const Authentification = () => {
             //localStorage.setItem('authToken', authToken)
             
             // Si je veux récupérer mon token je dois faire 'localStorage.getItem(Ma_clé)':
-            console.log(localStorage.getItem('authToken'))
+            //console.log(localStorage.getItem('authToken'))
 
             // Je simule une erreur
-            throw new Error ("Erreur d'authentification")
+            
         }
         catch (error){
-            setLoginError("Nom d'utilisateur ou mot de passe incorrect")
+          setLoginError("Nom d'utilisateur ou mot de passe incorrect")
+            console.log(error.message);
         } 
         finally {
             setIsLoginIn(false)

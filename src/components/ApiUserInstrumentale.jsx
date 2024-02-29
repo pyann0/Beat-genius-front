@@ -16,7 +16,7 @@ export const ApiUserInstrumentale = () => {
     });
 
     useEffect( () => {
-        monService.get("/1")
+        monService.get(`/${localStorage.getItem('id')}`)
             .then((response) =>{
                 setProducts(response.instrumentales)
                 console.log(response.instrumentales);
@@ -79,7 +79,6 @@ export const ApiUserInstrumentale = () => {
         let sendData = new FormData();
         const instrumentale = `{
             "name": "${formData.get('name')}",
-            "price": ${formData.get('price')},
             "catalogueId": ${formData.get('catalogue-select')},
             "userId": ${localStorage.getItem('id')}
           }`
@@ -88,14 +87,15 @@ export const ApiUserInstrumentale = () => {
         sendData.append("file", formData.get('file'))
         sendData.append("cover", formData.get('cover'))
         console.log(... sendData);
-        axios.post('http://localhost:8080/instrumentales/save', sendData)
-          .then(res => console.log(res))
+        monServiceInstrumentale.post('http://localhost:8080/instrumentales/save', sendData)
+          .then(response => {console.log(response)
+            setProducts( (prevProducts) => [...prevProducts, response])}
+          )
           .catch(err => console.log(err))
 
 /*
         setNewProduct({
-            instrumentale : `{ name: ${formData.get('name')},
-            price: ${formData.get('price')},            
+            instrumentale : `{ name: ${formData.get('name')},      
             catalogueId: 1,
             userId: 1
             }`,
@@ -130,14 +130,12 @@ export const ApiUserInstrumentale = () => {
             <h1>Les produits récupérés en passant par mon service: </h1>
             <div className="m-10 w-4/6 m-auto">
                 <div className="flex justify-end mb-5">
-                    <button className="btn btn-outline btn-inf" onClick={openModal}>Ajouter un nouveau produit</button>
+                    <button className="btn btn-outline btn-inf" onClick={openModal}>Ajouter nouvelle instrumentale</button>
                 </div>
                 <table className="table table-zebra border">
                     <thead>
                         <tr>
                             <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Modifier</th>
                             <th>Supprimer</th>
                             <th></th>
                         </tr>
@@ -145,14 +143,7 @@ export const ApiUserInstrumentale = () => {
                     <tbody>
                         { products.map((product) => (
                             <tr key={product.id}>
-                                <td>{product.name}</td>
-                                <td>{product.price}</td>                                
-                                <td>
-                                    <button
-                                        onClick={() => {deleteProduct(product.id)}}
-                                        className="btn btn-warning m-auto"
-                                    >Modifier</button>
-                                </td>
+                                <td>{product.name}</td>   
                                 <td>
                                     <button
                                         onClick={() => {deleteProduct(product.id)}}
@@ -188,12 +179,6 @@ export const ApiUserInstrumentale = () => {
                         className="flex input input-bordered"
                         type="text" 
                         name="name"
-                    />
-                    <input 
-                        placeholder="Prix"
-                        className="flex input input-bordered"
-                        type="text" 
-                        name="price"
                     />
 
                     <label for="pet-select">Choisir catalogue:</label>
